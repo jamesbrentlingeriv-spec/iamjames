@@ -251,6 +251,32 @@
     <div class="line line-2"></div>
   </div>
 
+  <script>
+    // Fix asset paths for GitHub Pages
+    (function() {
+      const isGitHubPages = window.location.hostname.includes('github.io');
+      let basePath = '';
+      
+      if (isGitHubPages) {
+        const pathSegments = window.location.pathname.split('/').filter(Boolean);
+        basePath = pathSegments.length > 0 ? '/' + pathSegments[0] : '';
+      }
+      
+      // Update all images with absolute paths
+      document.addEventListener('DOMContentLoaded', function() {
+        const images = document.querySelectorAll('img[src^="/"]');
+        images.forEach(img => {
+          const src = img.getAttribute('src');
+          if (!src.startsWith('http://') && !src.startsWith('https://')) {
+            img.setAttribute('src', basePath + src);
+          }
+        });
+        
+        console.log('📍 Base path set to:', basePath || '(root)');
+      });
+    })();
+  </script>
+
   <script src="app.js"></script>
 </body>
 

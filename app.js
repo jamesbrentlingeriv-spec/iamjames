@@ -1,3 +1,31 @@
+/* ============= BASE PATH CONFIGURATION ============= */
+// Automatically detect the base path for GitHub Pages or local hosting
+const getBasePath = () => {
+  // Check if we're on GitHub Pages (username.github.io)
+  const isGitHubPages = window.location.hostname.includes('github.io');
+  
+  if (isGitHubPages) {
+    // Extract repository name from path: /repository-name/...
+    const pathSegments = window.location.pathname.split('/').filter(Boolean);
+    // If there's a repo name in the path, use it as base
+    return pathSegments.length > 0 ? `/${pathSegments[0]}` : '';
+  }
+  
+  // For localhost or custom domain without subdirectory
+  return '';
+};
+
+const BASE_PATH = getBasePath();
+console.log('📍 Base path detected:', BASE_PATH || '(root)');
+
+// Helper function to resolve asset paths
+const assetPath = (path) => {
+  if (path.startsWith('http://') || path.startsWith('https://')) {
+    return path; // External URLs remain unchanged
+  }
+  return BASE_PATH + path;
+};
+
 /* ============= PROJECTS DATA ============= */
 // Exposing data globally for easy access/debugging if needed
 const PROJECTS = window.PROJECTS = [
@@ -303,7 +331,7 @@ function renderProjects() {
     return `
     <div class="project-card" onclick="openProjectModal('${project.id}')">
       <div class="project-thumbnail">
-        <img src="${project.thumbnail}" alt="${project.title}" referrerpolicy="no-referrer" onerror="console.error('Failed to load image:', '${project.thumbnail}')">
+        <img src="${assetPath(project.thumbnail)}" alt="${project.title}" referrerpolicy="no-referrer" onerror="console.error('Failed to load image:', '${project.thumbnail}')">
       </div>
       
       <div class="project-info">
@@ -400,6 +428,8 @@ function openProjectModal(projectId) {
   const renderVideoOrGif = (videoUrl, index) => {
     if (!videoUrl) return '';
     
+    // Resolve the path using assetPath helper
+    const resolvedUrl = assetPath(videoUrl);
     const isGif = videoUrl.toLowerCase().endsWith('.gif');
     const label = index > 1 ? ` (Part ${index})` : '';
     
@@ -407,14 +437,14 @@ function openProjectModal(projectId) {
       return `
         <div class="modal-video-placeholder">
           ${index > 1 ? `<p style="margin-bottom: 8px; font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Part ${index}</p>` : ''}
-          <img src="${videoUrl}" alt="${project.title} Demo${label}" style="width: 100%; height: auto; display: block;">
+          <img src="${resolvedUrl}" alt="${project.title} Demo${label}" style="width: 100%; height: auto; display: block;">
         </div>
       `;
     } else {
       return `
         <div class="modal-video-placeholder">
           ${index > 1 ? `<p style="margin-bottom: 8px; font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Part ${index}</p>` : ''}
-          <video src="${videoUrl}" controls autoplay muted loop playsinline></video>
+          <video src="${resolvedUrl}" controls autoplay muted loop playsinline></video>
         </div>
       `;
     }

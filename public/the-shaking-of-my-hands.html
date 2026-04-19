@@ -1019,6 +1019,42 @@
       </div>
     </footer>
   </div>
+
+  <script>
+    // Fix asset paths for GitHub Pages
+    (function() {
+      const isGitHubPages = window.location.hostname.includes('github.io');
+      let basePath = '';
+      
+      if (isGitHubPages) {
+        const pathSegments = window.location.pathname.split('/').filter(Boolean);
+        // Remove the page name to get repo base
+        const repoPath = pathSegments.slice(0, -1).join('/');
+        basePath = repoPath ? '/' + repoPath : '';
+      }
+      
+      // Update all relative paths
+      document.addEventListener('DOMContentLoaded', function() {
+        // Fix images
+        const images = document.querySelectorAll('img[src^="./"]');
+        images.forEach(img => {
+          const src = img.getAttribute('src');
+          const fixedSrc = src.replace('./', basePath + '/');
+          img.setAttribute('src', fixedSrc);
+        });
+        
+        // Fix links
+        const links = document.querySelectorAll('a[href^="./"]');
+        links.forEach(link => {
+          const href = link.getAttribute('href');
+          const fixedHref = href.replace('./', basePath + '/');
+          link.setAttribute('href', fixedHref);
+        });
+        
+        console.log('📍 Base path set to:', basePath || '(root)');
+      });
+    })();
+  </script>
 </body>
 
 </html>
