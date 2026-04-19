@@ -1021,17 +1021,28 @@
   </div>
 
   <script>
-    // Fix asset paths for GitHub Pages
+    // Fix asset paths for GitHub Pages and custom domains
     (function() {
-      const isGitHubPages = window.location.hostname.includes('github.io');
-      let basePath = '';
+      const getBasePath = () => {
+        const pathname = window.location.pathname;
+        const pathSegments = pathname.split('/').filter(Boolean);
+        
+        if (pathSegments.length > 0) {
+          const excludedPages = ['index.html', 'the-shaking-of-my-hands.html'];
+          const lastSegment = pathSegments[pathSegments.length - 1].toLowerCase();
+          
+          if (!excludedPages.includes(lastSegment)) {
+            return '/' + pathSegments[0];
+          } else if (pathSegments.length > 1) {
+            return '/' + pathSegments[0];
+          }
+        }
+        
+        return '';
+      };
       
-      if (isGitHubPages) {
-        const pathSegments = window.location.pathname.split('/').filter(Boolean);
-        // Remove the page name to get repo base
-        const repoPath = pathSegments.slice(0, -1).join('/');
-        basePath = repoPath ? '/' + repoPath : '';
-      }
+      const basePath = getBasePath();
+      console.log('📍 Base path set to:', basePath || '(root)');
       
       // Update all relative paths
       document.addEventListener('DOMContentLoaded', function() {
@@ -1041,6 +1052,7 @@
           const src = img.getAttribute('src');
           const fixedSrc = src.replace('./', basePath + '/');
           img.setAttribute('src', fixedSrc);
+          console.log(`🖼️ Fixed image: ${src} → ${fixedSrc}`);
         });
         
         // Fix links
@@ -1049,9 +1061,8 @@
           const href = link.getAttribute('href');
           const fixedHref = href.replace('./', basePath + '/');
           link.setAttribute('href', fixedHref);
+          console.log(`🔗 Fixed link: ${href} → ${fixedHref}`);
         });
-        
-        console.log('📍 Base path set to:', basePath || '(root)');
       });
     })();
   </script>
