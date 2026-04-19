@@ -809,6 +809,88 @@ body::selection {
   background-color: rgb(var(--border));
 }
 
+/* ============= LIVE PREVIEW MODAL ============= */
+.preview-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  background: rgb(var(--background));
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: rgb(var(--card));
+  border-bottom: 1px solid rgb(var(--border));
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.preview-header h3 {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: rgb(var(--foreground));
+}
+
+.preview-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  color: rgb(var(--muted-foreground));
+  transition: all 0.2s ease;
+}
+
+.preview-close:hover {
+  background: rgb(var(--muted));
+  color: rgb(var(--foreground));
+}
+
+.preview-content {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.preview-content iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: white;
+}
+
+@media (min-width: 768px) {
+  .preview-modal {
+    max-width: 90vw;
+    max-height: 90vh;
+    margin: auto;
+    border-radius: 1rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  }
+}
+
 /* ============= SKILLS SECTION ============= */
 .skills {
   padding: 6rem 1.5rem;

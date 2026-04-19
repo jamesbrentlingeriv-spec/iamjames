@@ -519,14 +519,14 @@ function openProjectModal(projectId) {
       ${
         project.liveUrl
           ? `
-        <a href="${project.liveUrl}" target="_blank" class="modal-button primary">
+        <button onclick="openLivePreview('${project.title}', '${project.liveUrl}')" class="modal-button primary">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="12" cy="12" r="10"></circle>
             <line x1="2" y1="12" x2="22" y2="12"></line>
             <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
           </svg>
           Live Preview
-        </a>
+        </button>
       `
           : ""
       }
@@ -620,6 +620,7 @@ document.addEventListener("click", function(e) {
 document.addEventListener("keydown", function(e) {
   if (e.key === "Escape") {
     closeProjectModal();
+    closeLivePreview();
   }
 });
 
@@ -627,4 +628,75 @@ document.addEventListener("keydown", function(e) {
 const modalClose = document.getElementById("modalClose");
 if (modalClose) {
   modalClose.addEventListener("click", closeProjectModal);
+}
+
+/* ============= LIVE PREVIEW IFRAME MODAL ============= */
+function openLivePreview(title, url) {
+  console.log('Opening live preview:', title, url);
+  
+  const overlay = document.getElementById("previewModalOverlay");
+  const modal = document.getElementById("previewModal");
+  const iframe = document.getElementById("previewIframe");
+  const titleEl = document.getElementById("previewTitle");
+  
+  if (!overlay || !modal || !iframe || !titleEl) {
+    console.error('Preview modal elements not found!');
+    return;
+  }
+  
+  // Set title and URL
+  titleEl.textContent = title + ' - Live Preview';
+  iframe.src = url;
+  
+  // Show modal
+  overlay.style.display = 'block';
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  
+  console.log('✓ Live preview opened');
+}
+
+function closeLivePreview() {
+  const overlay = document.getElementById("previewModalOverlay");
+  const modal = document.getElementById("previewModal");
+  const iframe = document.getElementById("previewIframe");
+  
+  if (overlay && modal && iframe) {
+    overlay.style.display = 'none';
+    modal.style.display = 'none';
+    iframe.src = ''; // Clear iframe to stop any media
+    document.body.style.overflow = '';
+    console.log('✓ Live preview closed');
+  }
+}
+
+// Make functions globally accessible
+window.openLivePreview = openLivePreview;
+window.closeLivePreview = closeLivePreview;
+
+// Close preview modal on overlay click
+document.addEventListener("click", function(e) {
+  const overlay = document.getElementById("previewModalOverlay");
+  if (e.target === overlay) {
+    closeLivePreview();
+  }
+});
+
+// Close preview modal button
+const previewClose = document.getElementById("previewClose");
+if (previewClose) {
+  previewClose.addEventListener("click", closeLivePreview);
+}
+
+/* ============= SERVICE WORKER REGISTRATION ============= */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then((registration) => {
+        console.log('✓ Service Worker registered successfully:', registration.scope);
+      })
+      .catch((error) => {
+        console.error('✗ Service Worker registration failed:', error);
+      });
+  });
 }

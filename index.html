@@ -8,6 +8,19 @@
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="styles.css">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  
+  <!-- PWA Support -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#ff4e00">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="iamjames">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 </head>
 
 <body>
@@ -112,6 +125,23 @@
       <div class="modal-body" id="modalBody">
         <!-- Project details inserted here -->
       </div>
+    </div>
+  </div>
+
+  <!-- Live Preview Iframe Modal -->
+  <div class="modal-overlay" id="previewModalOverlay" style="display: none;"></div>
+  <div class="preview-modal" id="previewModal" style="display: none;">
+    <div class="preview-header">
+      <h3 id="previewTitle">Live Preview</h3>
+      <button class="preview-close" id="previewClose">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="preview-content">
+      <iframe id="previewIframe" src="" frameborder="0" allowfullscreen></iframe>
     </div>
   </div>
 
