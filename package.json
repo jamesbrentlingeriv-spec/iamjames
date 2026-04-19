@@ -1,0 +1,14 @@
+{
+  "name": "iamjames-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Portfolio website built with vanilla HTML, CSS, and JavaScript - No build tools required!",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

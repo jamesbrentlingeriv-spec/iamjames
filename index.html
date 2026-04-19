@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>James | Web Developer & Optical Expert</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-initial" id="navbar">
+    <div class="navbar-container">
+      <div class="navbar-brand">
+        iamjames<span class="text-primary">.lol</span>
+      </div>
+
+      <div class="navbar-content">
+        <div class="navbar-links">
+          <a href="#projects">Projects</a>
+          <a href="#skills">Skills</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="moon-icon hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-background">
+      <div class="gradient-blob blob-1"></div>
+      <div class="gradient-blob blob-2"></div>
+    </div>
+
+    <div class="hero-content">
+      <p class="hero-label">Building Digital Futures</p>
+      <h1 class="hero-title">IAMJAMES<span class="text-primary">.LOL</span></h1>
+      <div class="hero-subtitle">
+        <span>Web Apps</span>
+        <span class="text-primary">/</span>
+        <span>Optical Tools</span>
+        <span class="text-primary">/</span>
+        <span>Business Logic</span>
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="projects">
+    <div class="projects-header">
+      <div>
+        <h2 class="section-title">SELECTED <br><span class="text-primary">WORKS</span></h2>
+        <p class="section-subtitle">
+          High-precision tools, secure health platforms, and diverse web solutions powering my digital portfolio.
+        </p>
+      </div>
+      <div class="projects-meta">
+        <span class="meta-label">Archives</span>
+        <span class="meta-date">2020 - 2026</span>
+      </div>
+    </div>
+
+    <div class="projects-grid" id="projectsGrid">
+      <!-- Projects will be inserted here -->
+    </div>
+  </section>
+
+  <!-- Project Modal -->
+  <div class="modal-overlay" id="modalOverlay"></div>
+  <div class="modal" id="projectModal">
+    <button class="modal-close" id="modalClose">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <div class="modal-content">
+      <!-- Media side -->
+      <div class="modal-media" id="modalMedia">
+        <!-- Video or images inserted here -->
+      </div>
+
+      <!-- Content side -->
+      <div class="modal-body" id="modalBody">
+        <!-- Project details inserted here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Skills Section -->
+  <section id="skills" class="skills">
+    <div class="skills-container">
+      <div class="skills-header">
+        <h2 class="section-title">Technical <br><span class="text-primary">Mastery</span></h2>
+        <p class="section-subtitle">
+          I've spent a decade refining my stack, moving between the precise world of optical engineering and the dynamic
+          realm of fullstack web development.
+        </p>
+        <div class="primary-stack">
+          <span class="stack-label">Primary Stack</span>
+          <div class="stack-tags">
+            <span class="tag">Vite</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">Express</span>
+            <span class="tag">CSS3</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="skills-grid" id="skillsGrid">
+        <!-- Skills will be inserted here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about">
+    <div class="about-container">
+      <div class="about-image">
+        <img src="/portrait.png" alt="James" referrerpolicy="no-referrer">
+        <div class="image-overlay"></div>
+        <div class="image-caption">
+          <span class="caption-number">10+</span>
+          <span class="caption-text">Years in Optical industry</span>
+        </div>
+      </div>
+
+      <div class="about-content">
+        <p class="about-label">About the creator</p>
+        <h2 class="about-title">BRIDGING VISION <br>AND TECHNOLOGY.</h2>
+
+        <div class="about-text">
+          <p>
+            I am James, a multi-disciplinary developer and optical expert based in the US.
+            My journey began in the precision-driven world of ophthalmics, where accuracy isn't just a
+            preference—it's a requirement.
+          </p>
+          <p>
+            Today, I channel that obsessive eye for detail into building high-performance web applications
+            and business tools. Whether it's a sleek marketing site or a complex calculator for
+            optical lab logistics, my goal is always to create "iamjames.lol"—an experience that
+            feels as good as it looks.
+          </p>
+
+          <div class="about-lists">
+            <div>
+              <h4>Capabilities</h4>
+              <ul>
+                <li>Fullstack Development</li>
+                <li>UI/UX Engineering</li>
+                <li>Optical Math & Logic</li>
+                <li>SaaS Architecture</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Interests</h4>
+              <ul>
+                <li>Modern Minimalism</li>
+                <li>JavaScript & Web APIs</li>
+                <li>Business Automation</li>
+                <li>Precise Analytics</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact/Footer -->
+  <footer id="contact" class="contact">
+    <div class="contact-container">
+      <div class="contact-header">
+        <div class="contact-text">
+          <p class="contact-label">Get in touch</p>
+          <h2 class="contact-title">LET'S BUILD <br>YOUR NEXT <span class="text-primary">BIG IDEA.</span></h2>
+          <div class="contact-links">
+            <a href="mailto:james@iamjames.lol" class="contact-link">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+              </svg>
+              <span>james@iamjames.lol</span>
+              <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </a>
+            <a href="https://github.com/iamjames" target="_blank" class="contact-link alt">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v 3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+              </svg>
+              <span>GitHub</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-status">
+          <span class="status-label">Status</span>
+          <div class="status-indicator">
+            <div class="status-dot"></div>
+            <span>Available for freelance</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-footer">
+        <p>© 2026 IAMJAMES. All rights reserved.</p>
+        <div class="footer-links">
+          <a href="#">Twitter</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">Instagram</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Background elements -->
+  <div class="background-lines">
+    <div class="line line-1"></div>
+    <div class="line line-2"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
