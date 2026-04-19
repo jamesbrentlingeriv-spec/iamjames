@@ -255,6 +255,14 @@
     // Fix asset paths for GitHub Pages and custom domains
     (function() {
       const getBasePath = () => {
+        const hostname = window.location.hostname;
+        
+        // For custom domains like iamjames.lol or localhost, use root path
+        if (!hostname.includes('github.io') && !hostname.includes('localhost')) {
+          return '';
+        }
+        
+        // For GitHub Pages, analyze the path
         const pathname = window.location.pathname;
         const pathSegments = pathname.split('/').filter(Boolean);
         
@@ -281,7 +289,8 @@
         images.forEach(img => {
           const src = img.getAttribute('src');
           if (!src.startsWith('http://') && !src.startsWith('https://') && !src.startsWith('data:')) {
-            const newSrc = basePath + src;
+            // Avoid double slashes
+            const newSrc = basePath === '' ? src : basePath + src;
             img.setAttribute('src', newSrc);
             console.log(`🖼️ Fixed image: ${src} → ${newSrc}`);
           }

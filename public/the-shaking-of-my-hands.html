@@ -1024,6 +1024,14 @@
     // Fix asset paths for GitHub Pages and custom domains
     (function() {
       const getBasePath = () => {
+        const hostname = window.location.hostname;
+        
+        // For custom domains like iamjames.lol or localhost, use root path
+        if (!hostname.includes('github.io') && !hostname.includes('localhost')) {
+          return '';
+        }
+        
+        // For GitHub Pages, analyze the path
         const pathname = window.location.pathname;
         const pathSegments = pathname.split('/').filter(Boolean);
         
@@ -1050,7 +1058,8 @@
         const images = document.querySelectorAll('img[src^="./"]');
         images.forEach(img => {
           const src = img.getAttribute('src');
-          const fixedSrc = src.replace('./', basePath + '/');
+          // Convert relative path to absolute path using base path
+          const fixedSrc = basePath === '' ? src.replace('./', '/') : basePath + src.replace('./', '/');
           img.setAttribute('src', fixedSrc);
           console.log(`🖼️ Fixed image: ${src} → ${fixedSrc}`);
         });
@@ -1059,7 +1068,8 @@
         const links = document.querySelectorAll('a[href^="./"]');
         links.forEach(link => {
           const href = link.getAttribute('href');
-          const fixedHref = href.replace('./', basePath + '/');
+          // Convert relative path to absolute path using base path
+          const fixedHref = basePath === '' ? href.replace('./', '/') : basePath + href.replace('./', '/');
           link.setAttribute('href', fixedHref);
           console.log(`🔗 Fixed link: ${href} → ${fixedHref}`);
         });
